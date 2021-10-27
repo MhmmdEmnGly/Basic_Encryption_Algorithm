@@ -1,0 +1,180 @@
+
+"""
+Şifreleme programı
+
+yazdığımız yazıyı bu program ile şifreleyerek anlamsız görünmesini sağlayacağız
+aynı zamanda decoder olarak da kullanarak aynı kodu çözebileceğiz
+
+"""
+
+"""
+x=0
+t=0
+sifre=[]
+sonuc=""
+metin=""
+while t!=5:
+    girdi =int(input("1_Sifrelemek İçin\n2_Sifreyi Cözmek İcin\n"))
+    if(girdi < 0 or girdi >2):
+        print("1 veya 2 ye basınız.")
+    else:
+        if (girdi==1):
+            sifrelenecek_veri=input("Sifrelenecek yaziyi giriniz:")
+            yazi=sifrelenecek_veri.encode(encoding='UTF-8')
+
+
+            for i in yazi:
+                metin=metin +str(i)
+
+            print(metin)
+
+        elif (girdi==2):
+            sifrelimessage =input("Cozmek istediginiz sifreyi giriniz")
+            msg=str(sifrelimessage)
+            kontrol=len(msg)
+            k=0
+            j=2
+
+            while (k<=kontrol):
+                if(int(sifrelimessage[k:j])>96 and int(sifrelimessage[k:j])<123):
+                    sonuc = sifrelimessage[k:j].decode(decoding="UTF-8") +sonuc
+                    k+=2
+                    j+=2
+            print(sonuc)
+
+               else :
+                    sonuc = sifrelimessage[k:j+1].decode(decoding="UTF-8") +sonuc
+                    k+=3
+                    j+=3
+
+#ascıı kodlarında 97 122 arası a dan z ye x w falan da var
+"""
+"""
+a = "bu metni dogru cevirebilecek mi acaba"
+
+
+# Encoding in UTF-8
+encoded_bytes = a.encode('utf-8', 'replace')
+print(encoded_bytes)
+                                                    #internetten buldugum decode() kullanımı hakkında
+# Trying to decode via ASCII, which is incorrect
+decoded_incorrect = encoded_bytes.decode('ascii', 'replace')
+decoded_correct = encoded_bytes.decode('utf-8', 'replace')
+
+#print('Incorrectly Decoded string:', decoded_incorrect)
+print('Correctly Decoded string:', decoded_correct)
+
+"""
+metin = ""
+alfabe={
+    "a":1,"b":2,"c":3,"d":4,"e":5,"f":6,"g":7,"h":8,"ı":9,"i":101,"j":102,"k":103,"l":104,"m":105,
+    "n":106,"o":107,"ö":108,"p":109,"r":1001,"ç":1002,"s":1003,"ş":1004,"t":1005,
+       "u":1006,"ü":1007,"v":1008,"y":1009,"z":10001,"x":10002,"w":10003,"q":10004,"ğ":10005," ":"xx",
+    1:"a",2:"b",3:"c",4:"d",5:"e",6:"f",7:"g",8:"h",9:"ı",101:"i",102:"j",103:"k",104:"l",105:"m",
+    106:"n" ,107:"o",108:"ö",109:"p",1001:"r",1002:"ç",1003:"s",1004:"ş",1005:"t",
+       1006:"u",1007:"ü",1008:"v",1009:"y",10001:"z",10002:"x",10003:"w",10004:"q",10005:"ğ"
+}
+    #bosluk gordugunde sıkıntı olabiliyo geiştir
+
+t=0
+while t!=5:
+    girdi =int(input("1_Sifrelemek İçin\n2_Sifreyi Cözmek İcin\n"))
+
+    if(girdi ==1):
+        sfr_veri = input("sifrelemek istediginiz cumleyi girin:")
+        #yeniveri = sfr_veri.strip()
+
+        for i in range(0, len(sfr_veri)):
+            metin += str(alfabe.get(sfr_veri[i]))
+
+        print(metin),print("\n")
+
+    elif (girdi==2):
+        cozuleceksifre=input("Cözülecek sifreyi giriniz :")
+        k=0
+        j=3
+        olusansifre = ""
+
+        uzunluk=len(cozuleceksifre)
+
+        while (k<len(cozuleceksifre)):
+            if(j>len(cozuleceksifre)):
+                                        #bunlarda bi sıkıntı var galiba emin ol
+                if(uzunluk-k==5):
+                    olusansifre += alfabe.get(int(cozuleceksifre[k]))
+                    olusansifre += alfabe.get(int(cozuleceksifre[k + 1]))
+                    olusansifre += alfabe.get(int(cozuleceksifre[k +2]))
+                    olusansifre += alfabe.get(int(cozuleceksifre[k + 3]))
+                    break
+                elif(uzunluk-k==4):
+                    olusansifre += alfabe.get(int(cozuleceksifre[k]))
+                    olusansifre += alfabe.get(int(cozuleceksifre[k + 1]))
+                    olusansifre += alfabe.get(int(cozuleceksifre[k + 2]))
+                    break
+
+                elif(uzunluk-k==3): # fark  3 4 olursa nolur onu düşün ilerde sıkıntı yapar
+                    olusansifre += str(alfabe.get(int(cozuleceksifre[k])))
+                    olusansifre += str(alfabe.get(int(cozuleceksifre[k+1])))
+                    break
+
+                else :
+                    olusansifre += str(alfabe.get(int(cozuleceksifre[k])))
+                    break
+
+            else:   #bosluk kodu
+                if (cozuleceksifre[k:k + 1] == "x" or cozuleceksifre[k+1:k + 2] == "x" or cozuleceksifre[k+2:k + 3] == "x" ):
+                    if(cozuleceksifre[k:k + 1] == "x"):
+                        olusansifre += " "
+                        k += 1
+                        j += 1
+                    elif(cozuleceksifre[k+1:k + 2] == "x"):
+                        olusansifre += str(alfabe.get(int(cozuleceksifre[k])))
+                        olusansifre += " "
+                        k += 2
+                        j += 2
+                    elif(cozuleceksifre[k+2:k + 3] == "x"):
+                        olusansifre += str(alfabe.get(int(cozuleceksifre[k])))
+                        olusansifre += str(alfabe.get(int(cozuleceksifre[k+1])))
+                        olusansifre += " "
+                        k += 3
+                        j += 3
+
+                #hepsinin basında buyuk esittir veua kucuk esittir vardı
+
+                elif(int(cozuleceksifre[k:j])>=110 and int(cozuleceksifre[k:j])!=100):
+                    olusansifre +=alfabe.get(int(cozuleceksifre[k]))
+                    k+=1
+                    j+=1                        # if(j<=len(cozuleceksifre)): j+=1
+
+                elif(int(cozuleceksifre[k:j])>100 and int(cozuleceksifre[k:j])<110):
+                    olusansifre = olusansifre +str(alfabe.get(int(cozuleceksifre[k:j])))
+                    k+=3
+                    j+=3
+
+                elif(int(cozuleceksifre[k:j+1])>1000 and int(cozuleceksifre[k:j+1])<1010):
+                    olusansifre += str(alfabe.get(int(cozuleceksifre[k:j+1])))
+                    k+=4
+                    j+=4
+#str() koy
+                elif (int(cozuleceksifre[k:j + 2]) > 10000 and int(cozuleceksifre[k:j + 2]) < 10010):
+                    olusansifre += alfabe.get(int(cozuleceksifre[k:j + 2]))
+                    k += 5
+                    j += 5
+
+        print(olusansifre)
+
+
+    #else:
+     #   print("Yanlis sayi girdiniz.Lutfen 1 veya 2 ye basınız.")
+
+
+
+
+
+#print(alfabe.get(sfr_veri[i]))
+
+#    if(j>=len(cozuleceksifre)):                 #sıkıntı olursa bunu yapatsın
+             #       olusansifre +=alfabe.get(int(cozuleceksifre[k:]))
+
+                    #olusansifre += alfabe.get(int(cozuleceksifre[k + 1]))
+                    #olusansifre += alfabe.get(int(cozuleceksifre[k + 2]))
