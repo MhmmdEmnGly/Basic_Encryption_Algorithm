@@ -47,24 +47,9 @@ while t!=5:
                     k+=3
                     j+=3
 
-#ascıı kodlarında 97 122 arası a dan z ye x w falan da var
-"""
-"""
-a = "bu metni dogru cevirebilecek mi acaba"
-
-
-# Encoding in UTF-8
-encoded_bytes = a.encode('utf-8', 'replace')
-print(encoded_bytes)
-                                                    #internetten buldugum decode() kullanımı hakkında
-# Trying to decode via ASCII, which is incorrect
-decoded_incorrect = encoded_bytes.decode('ascii', 'replace')
-decoded_correct = encoded_bytes.decode('utf-8', 'replace')
-
-#print('Incorrectly Decoded string:', decoded_incorrect)
-print('Correctly Decoded string:', decoded_correct)
 
 """
+
 metin = ""
 alfabe={
     "a":1,"b":2,"c":3,"d":4,"e":5,"f":6,"g":7,"h":8,"ı":9,"i":101,"j":102,"k":103,"l":104,"m":105,
@@ -155,7 +140,7 @@ while t!=5:
                     olusansifre += str(alfabe.get(int(cozuleceksifre[k:j+1])))
                     k+=4
                     j+=4
-#str() koy
+
                 elif (int(cozuleceksifre[k:j + 2]) > 10000 and int(cozuleceksifre[k:j + 2]) < 10010):
                     olusansifre += alfabe.get(int(cozuleceksifre[k:j + 2]))
                     k += 5
@@ -173,7 +158,7 @@ while t!=5:
 
 #print(alfabe.get(sfr_veri[i]))
 
-#    if(j>=len(cozuleceksifre)):                 #sıkıntı olursa bunu yapatsın
+#    if(j>=len(cozuleceksifre)):                 #sıkıntı olursa bunu yaparsın
              #       olusansifre +=alfabe.get(int(cozuleceksifre[k:]))
 
                     #olusansifre += alfabe.get(int(cozuleceksifre[k + 1]))
